@@ -1,0 +1,73 @@
+.topbar {
+    box-shadow: none !important;
+    color: #303030 !important;
+    border-bottom: solid 1px #e7dce1 !important;
+    background-color: white !important;
+    padding: 0 0.5rem;
+}
+
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+}
+
+.searchInput {
+    width: 65% !important;
+    box-sizing: border-box !important;
+}
+
+.searchIconButton {
+    padding: 0 !important;
+}
+
+.searchIcon {
+    border-radius: 5px !important;
+    border-color: #E0E3E7 !important;
+    background-color: #F3F6F9 !important;
+}
+
+.notificationButton {
+    margin: 0 1px 0 1.5rem !important;
+}
+
+.notificationIcon {
+    padding: 5px;
+    border-radius: 5px !important;
+    color: #F22598 !important;
+    background-color: transparent !important;
+    transition: width 0.5s ease-in-out, margin 0.5s ease-in-out;
+}
+
+.notificationIcon:hover {
+    color: #D81B60 !important;
+}
+
+.profileButton {
+    padding: 0.25;
+    border-radius: 10px !important;
+    color: var(--color-links-sidebar) !important;
+}
+
+.profileButton:hover {
+    background-color: rgb(250, 241, 244) !important;
+}
+
+@media (max-width: 600px) {
+    .searchInput {
+        width: 80vw !important;
+        margin-left: -10px !important;
+        position: absolute !important;
+        top: 20px;
+        z-index: 1000 !important;
+        left: 0 !important;
+        right: 0 !important;
+        padding: 0 10px;
+        box-sizing: border-box !important;
+    }
+
+    .buttonsContainer {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}

@@ -10,7 +10,7 @@ import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
+import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { Link, useNavigate } from 'react-router-dom';
-
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import SimplePasswordField from "../../components/password-field/SimplePasswordField";
@@ -28,11 +27,14 @@ const Login = () => {
     const handleLoginClick = async () => {
         try {
             const data = { email, password };
-            await authenticate(data);
+            const response = await authenticate(data);
+            
+            localStorage.setItem('token', response.token);
+            
+            toast.success("Login realizado com sucesso!");
             navigate("/dashboard");
         } catch (error) {
             toast.error("Email e/ou senha inválido(s).");
-            console.error("Erro ao fazer requisição:", error);
         }
     };
 

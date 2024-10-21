@@ -1,40 +1,49 @@
+import style from './Header.module.css';
+import { headerStyles } from './headerStyles';
+
 import React from 'react';
-// IMPORT MUI COMPONENTS
-import { AppBar } from '@mui/material';
-import { Toolbar } from '@mui/material';
-import { IconButton } from '@mui/material';
-// IMPORT MUI ICONS
+import { AppBar, Toolbar, IconButton, Box } from '@mui/material';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-// IMPORT INTERNAL FILES
 import ButtonProfile from './HeaderContent/ProfileButton';
-import './Header.css';
 import Search from './HeaderContent/Search';
 import Notification from './HeaderContent/Notification';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import MenuIcon from '@mui/icons-material/Menu';
 
+import clsx from 'clsx';
 const Header = ({ isSidebarOpen, toggleSidebar }) => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+    const config = headerStyles(isMobile, isSidebarOpen, theme);
+
     return (
         <AppBar
             position="fixed"
-            className={`topbar ${isSidebarOpen ? 'expanded' : 'collapsed'}`}
+            sx={config.appBar}
+            className={clsx(style.topbar, { 'expanded': isSidebarOpen, 'collapsed': !isSidebarOpen })}
         >
-            <Toolbar>
-                <IconButton
-                    className='toggle-icon'
-                    edge="start"
-                    color="inherit"
-                    onClick={toggleSidebar}
-                    sx={{ marginRight: '10px', marginLeft: '0px' }}
-                >
-                    <MenuOpenIcon />
-                </IconButton>
+            <Toolbar sx={config.toolbar} className={style.toolbar}>
+                <Box>
+                    <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        onClick={toggleSidebar}
+                        sx={config.iconButton}
+                    >
+                        {isSidebarOpen ? <MenuOpenIcon /> : <MenuIcon />}
+                    </IconButton>
+                </Box>
                 <Search />
-                <Notification />
-                <ButtonProfile />
+                <Box className={style.buttonsContainer}>
+                    <ButtonProfile />
+                    <Notification />
+                </Box>
             </Toolbar>
         </AppBar>
     );
 };
 
 export default Header;
-
-

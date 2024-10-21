@@ -1,6 +1,6 @@
-.footer {
-    border: 1px solid #aaa9a9;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #dfdfdf;
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
 }

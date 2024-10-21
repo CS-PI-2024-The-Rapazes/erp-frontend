@@ -1,92 +1,99 @@
+import style from './Index.module.css'
 import React from 'react';
-import { Grid, Paper, Typography, Box, IconButton, createTheme, ThemeProvider } from '@mui/material';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import InboxIcon from '@mui/icons-material/Inbox';
+import { Box } from '@mui/material';
+import { Grid } from '@mui/material';
+import { Typography } from '@mui/material';
+import { List } from '@mui/material';
+import { ListItem } from '@mui/material';
+import { ListItemAvatar } from '@mui/material';
+import { Avatar } from '@mui/material';
+import { ListItemText } from '@mui/material';
+import { Chart, CategoryScale, LinearScale, BarElement, PointElement, LineElement, ArcElement } from 'chart.js';
+import BarChart from './charts/BarChart';
+import DoughnutChart from './charts/DoughnutChart';
+import LineChart from './charts/LineChart';
 
-const theme = createTheme({
-    breakpoints: {
-        values: {
-            xs: 0,
-            sm: 640,
-            md: 960,
-            lg: 1280,
-            xl: 1600,
-        },
-    },
-});
+Chart.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, ArcElement);
 
-const Index = () => {
-    const data = [
-        {
-            title: "Ordens",
-            value: "152",
-            qtde: "24 ",
-            descri: " novos pedidos hoje",
-            icon: <ShoppingCartIcon sx={{ color: 'blue' }} />,
-            bgColor: 'rgba(33, 150, 243, 0.1)',
-        },
-        {
-            title: "Ganhos",
-            value: "R$ 2.100",
-            qtde: "%52+ ",
-            descri: "desde o último mês",
-            icon: <LocationOnIcon sx={{ color: 'orange' }} />,
-            bgColor: 'rgba(255, 152, 0, 0.1)',
-        },
-        {
-            title: "Clientes",
-            value: "6,350",
-            qtde: "520 ",
-            descri: " novos clientes",
-            icon: <InboxIcon sx={{ color: 'black' }} />,
-            bgColor: 'rgba(255, 188, 212, 0.1)',
-        }
-    ];
 
+const clients = [
+    { name: 'Joao', amount: 'R$ 1.500,00' },
+    { name: 'Gustavo', amount: 'R$ 1.000,00' },
+    { name: 'Mateus', amount: 'R$ 997,00' },
+    { name: 'Daniel', amount: 'R$ 750,00' },
+];
+
+const products = [
+    { name: 'Tábua de Frios', amount: 'R$ 9.000,00' },
+    { name: 'Bolo prestígio', amount: 'R$ 3.000,00' },
+    { name: 'Torta de palmito', amount: 'R$ 450,00' },
+    { name: 'Bolinho de Aipim', amount: 'R$ 300,00' },
+];
+
+const commonBoxStyles = { p: 2, height: '100%' };
+
+const Dashboard = () => {
     return (
-        <ThemeProvider theme={theme}>
-            <Grid container spacing={3}>
-                {data.map((item, index) => (
-                    <Grid item xs={12} sm={6} md={4} key={index}>
-                        <Paper elevation={2} sx={{ padding: { xs: 2, sm: 3, md: 4 }, borderRadius: 2, minWidth: '175px' }}>
-                            <Box display="flex" justifyContent="space-between" mb={2}>
-                                <Box>
-                                    <Typography variant="body2" sx={{ fontSize: 20 }} color="text.secondary" mb={1}>
-                                        {item.title}
-                                    </Typography>
-                                    <Typography variant="h5" color="text.primary">
-                                        {item.value}
-                                    </Typography>
-                                </Box>
-                                <Box
-                                    display="flex"
-                                    alignItems="center"
-                                    justifyContent="center"
-                                    sx={{
-                                        backgroundColor: item.bgColor,
-                                        width: '2.5rem',
-                                        height: '2.5rem',
-                                        borderRadius: '50%',
-                                    }}
-                                >
-                                    <IconButton>
-                                        {item.icon}
-                                    </IconButton>
-                                </Box>
-                            </Box>
-                            <Typography variant="body" color={"green"}>
-                                {item.qtde}
+        <Box sx={{ p: 1 }} >
+            <Grid spacing={4}>
+                <Grid container>
+                    {/* Internal Import BarChart from Charts */}
+                    <BarChart />
+                    {/* Internal Import DoughnutChart from Charts */}
+                    <DoughnutChart />
+                </Grid>
+
+                <Grid container sx={{ width: '100%' }} className={style.commonBoxTable}>
+                    <Grid item xs={12} md={4} >
+                        <Box sx={commonBoxStyles} className={style.borderTableBottomMobile}>
+                            <Typography className={style.chartTitle}>Clientes que mais compram</Typography>
+                            <Typography className={style.chartCaption}>
+                                Vendas 1-12 Ago, 2024
                             </Typography>
-                            <Typography variant="body">
-                                {item.descri}
-                            </Typography>
-                        </Paper>
+                            <List>
+                                {clients.map((client, index) => (
+                                    <ListItem key={index} className={style.listItensMostSales}>
+                                        <Box className={style.containerListSalesAvatar}>
+                                            <ListItemAvatar>
+                                                <Avatar className={style.listSalesAvatarColor} />
+                                            </ListItemAvatar>
+                                            <ListItemText primary={client.name} />
+                                        </Box>
+                                        <Typography>{client.amount}</Typography>
+                                    </ListItem>
+                                ))}
+                            </List>
+                        </Box>
                     </Grid>
-                ))}
+
+                    <Grid item xs={12} md={4}>
+                        <Box className={style.borderTableBottomMobile}
+                            sx={{ p: 2, borderLeft: '1px solid #e0e0e0', borderRight: '1px solid #e0e0e0' }}>
+                            <Typography className={style.chartTitle} >Produtos mais vendidos</Typography>
+                            <Typography className={style.chartCaption}>
+                                Vendas 1-12 Ago, 2024
+                            </Typography>
+                            <List>
+                                {products.map((product, index) => (
+                                    <ListItem key={index} className={style.listItensMostSales}>
+                                        <Box className={style.containerListSalesAvatar}>
+                                            <ListItemAvatar>
+                                                <Avatar className={style.listSalesAvatarColor} />
+                                            </ListItemAvatar>
+                                            <ListItemText primary={product.name} />
+                                        </Box>
+                                        <Typography>{product.amount}</Typography>
+                                    </ListItem>
+                                ))}
+                            </List>
+                        </Box>
+                    </Grid>
+                    {/* Internal Import LineChart from Charts */}
+                    <LineChart />
+                </Grid>
             </Grid>
-        </ThemeProvider>
+        </Box >
     );
 };
 
-export default Index;
+export default Dashboard;

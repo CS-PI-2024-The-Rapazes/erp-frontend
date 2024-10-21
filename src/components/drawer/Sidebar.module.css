@@ -1,0 +1,81 @@
+:root {
+    --background-drawer: rgba(255, 243, 246, 255);
+    --background-link-hover: rgb(255, 204, 221);
+    --color-links-sidebar: rgba(120, 126, 136, 255);
+    --color-links-strong: rgb(242, 37, 152);
+    --color-header-sidebar: rgb(85, 85, 85);
+}
+
+
+.containerListSidebar {
+    list-style: none !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    position: relative !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    width: 100% !important;
+}
+
+.logoContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65px;
+    border-bottom: 1px solid #e7dce1;
+}
+
+.logo {
+    width: 80px;
+    max-width: 100%;
+    height: auto;
+}
+
+.title {
+    color: var(--color-links-strong);
+    font-size: 1rem;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 25px;
+}
+
+.sidebarHeader {
+    color: var(--color-header-sidebar) !important;
+    font-size: 0.75rem !important;
+    font-weight: 650 !important;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    background-color: var(--background-drawer) !important;
+}
+
+.containerListSidebar .listItem {
+    border-radius: 10px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    color: var(--color-links-sidebar) !important;
+}
+
+.containerListSidebar .listItem:hover {
+    color: var(--color-links-strong) !important;
+    transition: background-color 0.3s;
+    background-color: var(--background-link-hover) !important;
+}
+
+
+.containerListSidebar .listItem .listItemIcon {
+    color: var(--color-links-sidebar) !important;
+    transition: color 0.3s;
+}
+
+.containerListSidebar .listItem:hover .listItemIcon {
+    transition: background-color 0.3s;
+    color: var(--color-links-strong) !important;
+}

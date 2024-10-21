@@ -9,9 +9,9 @@ import LogoSvg from '../../components/Img/logo.svg';
 import { toast } from 'react-toastify';
 import './Cadastre.css';
 import "./../../index.css"
-
 import { cadastre } from '../../services/LoginService';
 import { useLocation, useNavigate } from "react-router-dom";
+import { authenticate } from '../../services/LoginService';
 
 const Cadastre = () => {
     const [email, setEmail] = useState("");
@@ -61,6 +61,9 @@ const Cadastre = () => {
         try {
             const data = { email, password, name };
             await cadastre(data);
+            const response = await authenticate(data);
+            
+            localStorage.setItem('token', response.token);
             navigate("/dashboard");
             toast.success("Cadastro realizado com sucesso!");
         } catch (error) {

@@ -23,7 +23,15 @@ const ProdutoCard = ({ nome, preco, imagem }) => (
     </Card>
 );
 
-const ResumoComanda = ({ isPagamento, handlePagamento, checked, handleSwitchChange }) => (
+const ResumoComanda = ({ isPagamento,
+    handlePagamento,
+    checked,
+    handleSwitchChange,
+    selectedPaymentMethod,
+    handlePaymentMethodChange,
+    isResumo,
+    handleFecharConta }) => (
+
     <Box className={style.boxTickets}>
         <Typography className={style.tickeTittle} sx={{ mb: 1 }} variant="h6">Comanda 4</Typography>
         <Box className={style.boxTittleComanda}>
@@ -33,8 +41,8 @@ const ResumoComanda = ({ isPagamento, handlePagamento, checked, handleSwitchChan
                 variant="contained"
                 aria-label="Button group for comanda"
             >
-                <Button className={style.buttonWidth} disabled={!isPagamento}>Resumo</Button>
-                <Button className={style.buttonWidth} disabled={isPagamento}>Pagamento</Button>
+                <Button className={style.buttonWidth} disabled={isPagamento}>Resumo</Button>
+                <Button className={style.buttonWidth} disabled={!isPagamento}>Pagamento</Button>
             </ButtonGroup>
         </Box>
         {isPagamento ? (
@@ -49,15 +57,16 @@ const ResumoComanda = ({ isPagamento, handlePagamento, checked, handleSwitchChan
     <Grid item xs={12}>
         <Box display="flex" alignItems="center" gap={0.5}>
             <Tooltip title="Selecionar Dinheiro" arrow>
-                <IconButton size="small" color="primary">
-                    <Radio />
-                </IconButton>
+                                <IconButton
+                                    size="small"
+                                    color={selectedPaymentMethod === 'dinheiro' ? 'primary' : 'default'}
+                                    onClick={() => handlePaymentMethodChange('dinheiro')}
+                                >
+                                    <Radio checked={selectedPaymentMethod === 'dinheiro'} />
+                                </IconButton>
             </Tooltip>
             <Typography fontWeight="bold" variant="body2" color="textPrimary">
                 dinheiro
-            </Typography>
-            <Typography variant="caption" color="textSecondary">
-                troco para:
             </Typography>
             <Grid item xs={12} display="flex" justifyContent="flex-end">
                 <Typography variant="body2" className="box-pagamento">
@@ -69,9 +78,13 @@ const ResumoComanda = ({ isPagamento, handlePagamento, checked, handleSwitchChan
     <Grid item xs={12}>
         <Box display="flex" alignItems="center" gap={0.5}>
             <Tooltip title="Selecionar Cartão" arrow>
-                <IconButton size="small" color="primary">
-                    <Radio />
-                </IconButton>
+            <IconButton
+            size="small"
+            color={selectedPaymentMethod === 'cartao' ? 'primary' : 'default'}
+            onClick={() => handlePaymentMethodChange('cartao')}
+            >
+            <Radio checked={selectedPaymentMethod === 'cartao'} />
+            </IconButton>
             </Tooltip>
             <Typography variant="body2" color="textPrimary">
                 cartão
@@ -151,7 +164,7 @@ const ResumoComanda = ({ isPagamento, handlePagamento, checked, handleSwitchChan
         <Divider sx={{ marginY: 1.5 }} />
     </Grid>
     <Box className={style.boxButton}>
-            <Button variant="contained" className={style.buttonSend}>
+            <Button variant="contained" className={style.buttonSend} onClick={handleFecharConta}>
                 <ArrowLeftOutlined />
                 Fechar conta
             </Button>
@@ -220,7 +233,14 @@ const ResumoComanda = ({ isPagamento, handlePagamento, checked, handleSwitchChan
 const NewItem = () => {
     const [produtos, setProdutos] = useState([]);
     const [isPagamento, setIsPagamento] = useState(false);
+    const [isResumo, setIsResumo] = useState(false);
     const [checked, setChecked] = useState(false);
+
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
+
+    const handlePaymentMethodChange = (method) => {
+        setSelectedPaymentMethod(prevMethod => prevMethod === method ? null : method);
+    };
 
     const fetchProducts = async () => {
         try {
@@ -235,8 +255,10 @@ const NewItem = () => {
         setChecked(event.target.checked);
       };
 
-    const handlePagamento = () => {
-        setIsPagamento(true); 
+    const handlePagamento = () => setIsPagamento(true);
+    const handleFecharConta = () => {
+        setIsPagamento(false);
+        setIsResumo(true); 
     };
 
     useEffect(() => {
@@ -283,8 +305,14 @@ const NewItem = () => {
             </Grid>
             <Grid item xs={12} md={5} mb={5}>
                 <ResumoComanda
-                 isPagamento={isPagamento} 
-                 handlePagamento={handlePagamento} 
+                    isPagamento={isPagamento}
+                    handlePagamento={handlePagamento}
+                    checked={checked}
+                    handleSwitchChange={handleSwitchChange}
+                    selectedPaymentMethod={selectedPaymentMethod}
+                    handlePaymentMethodChange={handlePaymentMethodChange}
+                    isResumo={isResumo}
+                    handleFecharConta={handleFecharConta}
                   />
             </Grid>
         </Grid>

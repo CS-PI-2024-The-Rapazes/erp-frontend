@@ -1,0 +1,339 @@
+.commands * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.comanda-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+}
+
+.titulo {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.comandas-selecionadas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+button.adicionar-item:disabled {
+    background-color: #dcdcdc;
+    color: #a0a0a0;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.6;
+    transition: opacity 0.3s ease
+}
+
+.comandas-fechamento {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#quantidade-comandas-fechamento {
+    font-size: 16px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+#comandas-fechamento-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#comandas-fechamento-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #555;
+    font-size: 14px;
+}
+
+.comandas-table {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#comandas-lista {
+    list-style-type: none;
+    padding: 0;
+}
+
+#comandas-lista .comanda-item {
+    padding: 12px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#comandas-lista .comanda-item:hover {
+    background-color: #ddd;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.modal-body {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.input-with-icon i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 18px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    min-height: 100px;
+    resize: vertical;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cancelar-btn,
+.abrir-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancelar-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+}
+
+.abrir-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+.cancelar-btn:hover {
+    background-color: #d32f2f;
+}
+
+.abrir-btn:hover {
+    background-color: #388e3c;
+}
+
+.comandas-selecionadas {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.comandas-selecionadas .titulo {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.comanda-selecionada-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F2598C;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comanda-selecionada {
+    padding: 10px;
+    border-radius: 5px;
+    word-wrap: break-word;
+    margin-right: 10px;
+}
+
+.comanda-selecionada p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #232323;
+    margin: 0;
+}
+
+.comanda-selecionada-container .check-icon {
+    font-size: 20px;
+    color: white;
+    margin-left: 10px;
+}
+
+.comandas-selecionadas .adicionar-item {
+    padding: 8px 16px;
+    background-color: #F2598C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.comandas-selecionadas .adicionar-item:hover {
+    background-color: #e04878;
+}
+
+.box-pagamento {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    border: 0.5px solid #ccc;
+    min-width: 60px;
+    margin-left: auto;
+}
+.paymentPartialText {
+    font-size: 0.875rem;
+}
+
+.paginacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    gap: 5px;
+}
+
+.paginacao button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.paginacao button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+.paginacao button:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+.paginacao .ativo {
+    background-color: #28a745;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+
+@media (max-width: 768px) {
+    .comanda-container {
+        padding: 10px;
+    }
+
+    .modal {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cancelar-btn,
+    .abrir-btn {
+        width: 100%;
+        padding: 12px;
+    }
+}

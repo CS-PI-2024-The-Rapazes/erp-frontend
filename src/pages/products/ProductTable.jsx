@@ -1,7 +1,7 @@
 import AlertDelete from './ConfirmDeleteBox';
-import { getAllProducts } from '../../../services/ProductService';
+import { getAllProducts } from '../../services/ProductService'
 import React, { Fragment, useEffect, useState } from 'react';
-import style from '../Index.module.css';
+import style from '../dashboard/Index.module.css';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';

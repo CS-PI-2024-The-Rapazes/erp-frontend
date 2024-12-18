@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { useNavigate } from 'react-router-dom';
 import ProductTable from './ProductTable';
-import style from '../Index.module.css';
+import style from '../dashboard/Index.module.css';
 
 const Products = () => {
     const navigate = useNavigate();

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { Box, Checkbox, FormControlLabel, Typography, Button, Grid, InputLabel, MenuItem, Select, TextField, Tooltip } from '@mui/material';
-import style from '../Index.module.css';
+import style from '../dashboard/Index.module.css';
 import { ArrowBackIosOutlined } from '@mui/icons-material';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { edit } from '../../../services/ProductService';
+import { edit } from '../../services/ProductService'
 import { toast } from 'react-toastify';
 import { COLORS, UploadBox } from './TableCustom';
 
